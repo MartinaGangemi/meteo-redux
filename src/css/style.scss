@@ -1,0 +1,57 @@
+@import '../../node_modules/antd/dist/antd.css';
+@import './variables';
+
+* {
+    margin: 0 auto;
+    color: white;
+}
+
+.ant-layout {
+    height: 100vh;
+}
+.site-layout-background {
+    display: flex;
+    align-items: center;
+
+    width: 40%;
+}
+
+.container {
+    background: linear-gradient(
+        to bottom,
+        $primaryColor 0%,
+        $primaryColorLight 100%
+    );
+    padding: 2rem;
+    box-shadow: 2px 2px 10px rgb(99, 99, 99);
+    border-radius: 5px;
+    width: 100%;
+}
+.ant-row {
+    align-items: center !important;
+}
+.search-icon > svg {
+    color: white;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.ant-col-2 {
+    margin-left: 0;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.icon-container {
+    width: 80px;
+}
+
+@import './query';
+@import './utilities';

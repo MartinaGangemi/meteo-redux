@@ -1,0 +1,45 @@
+@media only screen and (max-width: 1500px) {
+    .site-layout-background {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .site-layout-background {
+        width: 55%;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .site-layout-background {
+        width: 100vw;
+    }
+    .container {
+        height: 100%;
+        border-radius: 0;
+        overflow-y: auto;
+    }
+
+    .icon-container {
+        width: 80px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .icon-container {
+        width: 50px;
+    }
+}
+
+// @media only screen and (max-height: 800px) and (min-width: 900px) {
+//     .site-layout-background {
+//         width: 100%;
+//     }
+//     .container {
+//         border-radius: 0;
+
+//         height: 100%;
+
+//         overflow-y: auto;
+//     }
+// }
