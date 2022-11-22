@@ -2,25 +2,14 @@ import React, {useState} from 'react';
 import {Input} from 'antd';
 import {useForm} from 'react-hook-form';
 
-const Inputs = ({setQuery}) => {
-    const [city, setCity] = useState('');
-
-    const {handleSubmit} = useForm();
-
-    const handleSearchClick = (e) => {
-        if (city !== '') {
-            setQuery({q: city});
-            setCity(' ');
-        }
-    };
-
+const Inputs = () => {
     return (
-        <form onSubmit={handleSubmit(handleSearchClick)} className="mt-1">
+        <form className="mt-1">
             <Input
                 className="inputCity"
-                onChange={(e) => setCity(e.currentTarget.value)}
+                //onChange={}
                 placeholder="Search for city..."
-                value={city}
+                // value={city}
             />
         </form>
     );

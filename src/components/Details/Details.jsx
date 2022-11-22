@@ -17,45 +17,28 @@ import {
     iconUrlFromCode,
 } from '../../services/weatherService';
 
-const Details = ({
-    weather: {
-        description,
-        icon,
-        temp,
-        temp_min,
-        temp_max,
-        sunrise,
-        sunset,
-        humidity,
-        feels_like,
-        timezone,
-        speed,
-    },
-}) => {
+const Details = ({}) => {
     return (
         <div>
             <Row className=" align-center ">
                 <Col span={24}>
-                    <h3 className="text-white">{description}</h3>
+                    <h3 className="text-white"></h3>
                 </Col>
                 <Col span={8}>
-                    <div className="icon-container">
-                        <img src={iconUrlFromCode(icon)} alt="" />
-                    </div>
+                    <div className="icon-container">immagine</div>
                 </Col>
                 <Col span={8}>
-                    <h2 className="text-white">{`${temp.toFixed()}°`}</h2>
+                    <h2 className="text-white"></h2>
                 </Col>
                 <Col span={8} className="weather-details">
                     <p>
-                        <FontAwesomeIcon icon={faTemperature0} />{' '}
-                        {`${feels_like.toFixed()}°`}
+                        <FontAwesomeIcon icon={faTemperature0} />
                     </p>
                     <p>
-                        <FontAwesomeIcon icon={faDroplet} /> {humidity}%
+                        <FontAwesomeIcon icon={faDroplet} />
                     </p>
                     <p>
-                        <FontAwesomeIcon icon={faWind} /> {speed}Km/h
+                        <FontAwesomeIcon icon={faWind} />
                     </p>
                 </Col>
             </Row>
@@ -63,28 +46,24 @@ const Details = ({
             <Row className="mt-2  align-center ">
                 <Col span={5}>
                     <FontAwesomeIcon icon={faSun} /> Rise:{' '}
-                    {formatToLocalTime(sunrise, 'hh:mm a')}
                 </Col>
                 <Col className="text-light" span={1}>
                     |
                 </Col>
                 <Col span={5}>
                     <FontAwesomeIcon icon={faMoon} /> Set:{' '}
-                    {formatToLocalTime(sunset, 'hh:mm a')}
                 </Col>
                 <Col className="text-light" span={1}>
                     |
                 </Col>
                 <Col span={5}>
-                    <FontAwesomeIcon icon={faArrowUp} />{' '}
-                    {`${temp_max.toFixed()}°`}
+                    <FontAwesomeIcon icon={faArrowUp} />
                 </Col>
                 <Col className="text-light" span={1}>
                     |
                 </Col>
                 <Col span={5}>
-                    <FontAwesomeIcon icon={faArrowDown} />{' '}
-                    {`${temp_min.toFixed()}°`}
+                    <FontAwesomeIcon icon={faArrowDown} />
                 </Col>
             </Row>
         </div>

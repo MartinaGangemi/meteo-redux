@@ -1,15 +1,14 @@
 import React from 'react';
 import {Row, Col} from 'antd';
 
-const TimeAndLocation = ({weather: {name, country}}) => {
+const TimeAndLocation = () => {
     return (
         <Row justify="center" className="mt-1 align-center ">
             <Col span={24}>
-                {/* TODO: da sistemare la timezone */}
                 <h4 className="text-white">Today</h4>
             </Col>
             <Col span={24}>
-                <h2 className="text-white">{`${name}, ${country}`}</h2>
+                <h2 className="text-white"></h2>
             </Col>
         </Row>
     );

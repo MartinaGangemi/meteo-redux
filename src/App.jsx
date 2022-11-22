@@ -6,39 +6,33 @@ import Inputs from './components/Inputs';
 import TimeAndLocation from './components/TimeAndLocation';
 import Details from './components/Details';
 import DailyForecast from './components/DailyForecast';
-import getFormattedWeatherData from './services/weatherService';
+import {useSelector} from 'react-redux';
+import {selectAllWeathers} from './app/weatherSlice';
+import {fetchWeather} from './app/weatherSlice';
+import {useDispatch} from 'react-redux';
 
 import './css/style.scss';
 
 function App() {
-    const [query, setQuery] = useState({q: 'berlin'});
-    const units = 'metric';
-    const [weather, setWeather] = useState(null);
+    const weather = useSelector(selectAllWeathers);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        const fetchWeather = async () => {
-            await getFormattedWeatherData({...query, units}).then((data) => {
-                setWeather(data);
-            });
-        };
-
-        fetchWeather();
-    }, [query, units]);
+        dispatch(fetchWeather('berlin'));
+    }, []);
 
     return (
         <Layout>
             <Content className="site-layout-background">
                 <div className="container">
-                    <TopButtons setQuery={setQuery} />
-                    <Inputs query={query} setQuery={setQuery} />
+                    <TopButtons />
+                    <Inputs />
 
-                    {weather && (
-                        <div>
-                            <TimeAndLocation weather={weather} />
-                            <Details weather={weather} />
-                            <DailyForecast items={weather.dailyForecast} />
-                        </div>
-                    )}
+                    <div>
+                        <TimeAndLocation />
+                        <Details />
+                        <DailyForecast />
+                    </div>
                 </div>
             </Content>
         </Layout>
