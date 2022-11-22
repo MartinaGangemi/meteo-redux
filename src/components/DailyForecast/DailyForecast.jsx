@@ -2,7 +2,6 @@ import React from 'react';
 import './DailyForecast.scss';
 
 import {Row, Col} from 'antd';
-import {iconUrlFromCode} from '../../services/weatherService';
 
 const DailyForecast = () => {
     return (

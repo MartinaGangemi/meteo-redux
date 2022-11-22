@@ -1,25 +1,30 @@
-import {useState, useEffect} from 'react';
+import {useEffect} from 'react';
 import {Layout} from 'antd';
 const {Content} = Layout;
+
 import TopButtons from './components/TopButtons/TopButtons';
 import Inputs from './components/Inputs';
 import TimeAndLocation from './components/TimeAndLocation';
 import Details from './components/Details';
 import DailyForecast from './components/DailyForecast';
-import {useSelector} from 'react-redux';
-import {selectAllWeathers} from './app/weatherSlice';
+
+import {useSelector, useDispatch} from 'react-redux';
+//import {selectAllWeathers} from './app/weatherSlice';
 import {fetchWeather} from './app/weatherSlice';
-import {useDispatch} from 'react-redux';
 
 import './css/style.scss';
 
 function App() {
-    const weather = useSelector(selectAllWeathers);
+    const state = useSelector((state) => state.weather);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(fetchWeather('berlin'));
     }, []);
+
+    const {weather, loading, error} = state;
+
+    console.log(state);
 
     return (
         <Layout>
@@ -27,12 +32,13 @@ function App() {
                 <div className="container">
                     <TopButtons />
                     <Inputs />
-
-                    <div>
-                        <TimeAndLocation />
-                        <Details />
-                        <DailyForecast />
-                    </div>
+                    {weather && (
+                        <div>
+                            <TimeAndLocation weather={state.weather} />
+                            <Details weather={state.weather} />
+                            <DailyForecast />
+                        </div>
+                    )}
                 </div>
             </Content>
         </Layout>

@@ -16,8 +16,8 @@ export const fetchWeather = createAsyncThunk(
 );
 
 const weatherSlice = createSlice({
-    name: 'wheather',
-    initialState: {data: 'Loading'},
+    name: 'weather',
+    initialState: {},
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchWeather.pending, (state, action) => {
@@ -36,5 +36,5 @@ const weatherSlice = createSlice({
     },
 });
 
-export const selectAllWeathers = (state) => state.weather;
+//export const selectAllWeathers = (state) => state;
 export default weatherSlice.reducer;
