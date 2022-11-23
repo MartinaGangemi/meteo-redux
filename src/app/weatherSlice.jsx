@@ -21,16 +21,21 @@ export const fetchWeather = createAsyncThunk(
     async (payload, {rejectWithValue, getState, dispatch}) => {
         const cityUrl = `${BASE_URL}/weather?q=${payload}&appid=${API_KEY}&units=metric`;
 
-        const cityRes = await fetch(cityUrl);
-        const cityData = await cityRes.json();
-        //console.log(cityData);
+        try {
+            const cityRes = await fetch(cityUrl);
+            const cityData = await cityRes.json();
+            //console.log(cityData);
 
-        const {lon, lat} = cityData.coord;
+            const {lon, lat} = cityData.coord;
 
-        const dailyForecast = await getDailyForecast(lat, lon);
+            const dailyForecast = await getDailyForecast(lat, lon);
 
-        const weather = {dailyForecast, ...cityData};
-        return weather;
+            const weather = {dailyForecast, ...cityData};
+            return weather;
+        } catch (err) {
+            console.error(err);
+            return rejectWithValue(error?.response?.data);
+        }
     },
 
     // async (payload, {rejectWithValue, getState, dispatch}) => {
@@ -84,13 +89,13 @@ const weatherSlice = createSlice({
         builder.addCase(fetchWeather.fulfilled, (state, action) => {
             state.weather = action?.payload;
             state.loading = false;
-            // state.error = undefined;
+            state.error = undefined;
         });
-        // builder.addCase(fetchWeather.rejected, (state, action) => {
-        //     state.loading = false;
-        //     state.weather = undefined;
-        //     state.error = action?.payload;
-        // });
+        builder.addCase(fetchWeather.rejected, (state, action) => {
+            state.loading = false;
+            state.weather = undefined;
+            state.error = true;
+        });
     },
 });
 

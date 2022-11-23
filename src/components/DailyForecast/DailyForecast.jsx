@@ -9,10 +9,10 @@ const DailyForecast = ({dailyForecast}) => {
             <h4 className="text-white forecast-text">Daily Forecast</h4>
 
             <Row className="mt-1 align-center">
-                {dailyForecast.map((item, i) => (
+                {dailyForecast?.map((item, i) => (
                     <Col key={i} span={4}>
                         <h4 className="text-white text-uppercase">
-                            {item.title}
+                            {item?.title}
                         </h4>
                         <div className="icon-container">
                             <img
@@ -21,7 +21,7 @@ const DailyForecast = ({dailyForecast}) => {
                             />
                         </div>
 
-                        <h4 className="text-white">{`${item.temp.toFixed()}°`}</h4>
+                        <h4 className="text-white">{`${item?.temp.toFixed()}°`}</h4>
                     </Col>
                 ))}
             </Row>

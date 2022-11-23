@@ -23,9 +23,9 @@ function App() {
         dispatch(fetchWeather(city));
     }, [dispatch]);
 
-    const {weather, loading} = state;
+    const {weather, loading, error} = state;
 
-    console.log(state.weather?.dailyForecast);
+    console.log(state);
 
     return (
         <Layout>
@@ -33,8 +33,8 @@ function App() {
                 <div className="container">
                     <TopButtons />
                     <Inputs city={city} setCity={setCity} />
-                    {weather?.cod === '404' ? (
-                        <h1>{weather.message}</h1>
+                    {error ? (
+                        <h1>city not found!</h1>
                     ) : loading ? (
                         <h1>...Loading</h1>
                     ) : (
