@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {Layout} from 'antd';
 const {Content} = Layout;
 
@@ -15,28 +15,35 @@ import {fetchWeather} from './app/weatherSlice';
 import './css/style.scss';
 
 function App() {
+    const [city, setCity] = useState('london ');
     const state = useSelector((state) => state.weather);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchWeather('berlin'));
-    }, []);
+        dispatch(fetchWeather(city));
+    }, [dispatch]);
 
-    const {weather, loading, error} = state;
+    const {weather, loading} = state;
 
-    console.log(state);
+    console.log(state.weather?.dailyForecast);
 
     return (
         <Layout>
             <Content className="site-layout-background">
                 <div className="container">
                     <TopButtons />
-                    <Inputs />
-                    {weather && (
+                    <Inputs city={city} setCity={setCity} />
+                    {weather?.cod === '404' ? (
+                        <h1>{weather.message}</h1>
+                    ) : loading ? (
+                        <h1>...Loading</h1>
+                    ) : (
                         <div>
                             <TimeAndLocation weather={state.weather} />
                             <Details weather={state.weather} />
-                            <DailyForecast />
+                            <DailyForecast
+                                dailyForecast={state.weather?.dailyForecast}
+                            />
                         </div>
                     )}
                 </div>

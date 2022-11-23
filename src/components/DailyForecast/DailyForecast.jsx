@@ -3,7 +3,7 @@ import './DailyForecast.scss';
 
 import {Row, Col} from 'antd';
 
-const DailyForecast = () => {
+const DailyForecast = ({dailyForecast}) => {
     return (
         <div className="mt-2">
             <h4 className="text-white forecast-text">Daily Forecast</h4>

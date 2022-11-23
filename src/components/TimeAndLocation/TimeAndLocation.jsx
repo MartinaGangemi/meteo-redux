@@ -9,7 +9,7 @@ const TimeAndLocation = ({weather}) => {
             </Col>
             <Col span={24}>
                 <h2 className="text-white">
-                    {weather.name}, {weather.sys.country}
+                    {weather?.name}, {weather?.sys.country}
                 </h2>
             </Col>
         </Row>

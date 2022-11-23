@@ -1,15 +1,21 @@
 import React, {useState} from 'react';
 import {Input} from 'antd';
 import {useForm} from 'react-hook-form';
+import {useSelector, useDispatch} from 'react-redux';
 
-const Inputs = () => {
+import {fetchWeather} from '../../app/weatherSlice';
+
+const Inputs = ({city, setCity}) => {
+    const dispatch = useDispatch();
+    const {handleSubmit} = useForm();
     return (
-        <form className="mt-1">
+        <form
+            onSubmit={handleSubmit(() => dispatch(fetchWeather(city)))}
+            className="mt-1">
             <Input
                 className="inputCity"
-                //onChange={}
+                onChange={(e) => setCity(e.target.value)}
                 placeholder="Search for city..."
-                // value={city}
             />
         </form>
     );
