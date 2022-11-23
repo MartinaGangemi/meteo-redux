@@ -13,6 +13,8 @@ import {
     faMoon,
 } from '@fortawesome/free-solid-svg-icons';
 
+import {formatToLocalTime} from '../../app/weatherSlice';
+
 const Details = ({weather}) => {
     return (
         <div>
@@ -53,14 +55,14 @@ const Details = ({weather}) => {
             <Row className="mt-2  align-center ">
                 <Col span={5}>
                     <FontAwesomeIcon icon={faSun} /> Rise:{' '}
+                    {formatToLocalTime(weather?.sys.sunrise, 'hh:mm a')}
                 </Col>
                 <Col className="text-light" span={1}>
                     |
                 </Col>
                 <Col span={5}>
-                    <FontAwesomeIcon icon={faMoon} />
-                    {/* fixare */}
-                    Set: {weather?.sys.sunset}°
+                    <FontAwesomeIcon icon={faMoon} /> Set:{' '}
+                    {formatToLocalTime(weather?.sys.sunset, 'hh:mm a')}
                 </Col>
                 <Col className="text-light" span={1}>
                     |

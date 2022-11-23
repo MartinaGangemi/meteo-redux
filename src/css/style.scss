@@ -26,6 +26,14 @@
     box-shadow: 2px 2px 10px rgb(99, 99, 99);
     border-radius: 5px;
     width: 100%;
+    height: 640px;
+}
+
+.error-loading-message {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: calc(640px - 68px - 8rem);
 }
 .ant-row {
     align-items: center !important;

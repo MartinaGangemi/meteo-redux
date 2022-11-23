@@ -34,17 +34,23 @@ function App() {
                     <TopButtons city={city} />
                     <Inputs city={city} setCity={setCity} />
                     {error ? (
-                        <h1>city not found!</h1>
+                        <main className="error-loading-message">
+                            <h1 className="text-white center">
+                                City not found!
+                            </h1>
+                        </main>
                     ) : loading ? (
-                        <h1>...Loading</h1>
+                        <main className="error-loading-message">
+                            <h1 className="text-white center">...Loading</h1>
+                        </main>
                     ) : (
-                        <div>
+                        <main>
                             <TimeAndLocation weather={state.weather} />
                             <Details weather={state.weather} />
                             <DailyForecast
                                 dailyForecast={state.weather?.dailyForecast}
                             />
-                        </div>
+                        </main>
                     )}
                 </div>
             </Content>

@@ -75,7 +75,7 @@ const getDailyForecast = async (lat, lon) => {
     return dailyForecast;
 };
 
-const formatToLocalTime = (secs, format = 'ccc') =>
+export const formatToLocalTime = (secs, format = 'ccc') =>
     DateTime.fromSeconds(secs).toFormat(format);
 
 const weatherSlice = createSlice({
