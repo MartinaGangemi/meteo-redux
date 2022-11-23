@@ -9,12 +9,21 @@ const DailyForecast = ({dailyForecast}) => {
             <h4 className="text-white forecast-text">Daily Forecast</h4>
 
             <Row className="mt-1 align-center">
-                <Col span={4}>
-                    <h4 className="text-white text-uppercase"></h4>
-                    <div className="icon-container">img</div>
+                {dailyForecast.map((item, i) => (
+                    <Col key={i} span={4}>
+                        <h4 className="text-white text-uppercase">
+                            {item.title}
+                        </h4>
+                        <div className="icon-container">
+                            <img
+                                src={`http://openweathermap.org/img/wn/${item.icon}@2x.png`}
+                                alt=""
+                            />
+                        </div>
 
-                    <h4 className="text-white"></h4>
-                </Col>
+                        <h4 className="text-white">{`${item.temp.toFixed()}°`}</h4>
+                    </Col>
+                ))}
             </Row>
         </div>
     );
