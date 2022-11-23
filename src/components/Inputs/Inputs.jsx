@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
 import {Input} from 'antd';
 import {useForm} from 'react-hook-form';
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 import {fetchWeather} from '../../app/weatherSlice';
 

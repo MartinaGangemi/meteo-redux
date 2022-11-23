@@ -1,9 +1,12 @@
 import React from 'react';
 import {Button, Row, Col} from 'antd';
+import {useDispatch} from 'react-redux';
+import {fetchWeather} from '../../app/weatherSlice';
 import './TopButtons.scss';
 
-const TopButtons = ({setQuery}) => {
+const TopButtons = (city) => {
     const cities = ['Torino', 'Sidney', 'Tokyo', 'Paris'];
+    const dispatch = useDispatch();
 
     return (
         <div>
@@ -11,7 +14,7 @@ const TopButtons = ({setQuery}) => {
                 {cities.map((city, i) => (
                     <Col key={i} span={6}>
                         <Button
-                            // onClick={() => setQuery({q: city})}
+                            onClick={() => dispatch(fetchWeather(city))}
                             type="primary"
                             className="button-primary"
                             block>

@@ -34,7 +34,7 @@ export const fetchWeather = createAsyncThunk(
             return weather;
         } catch (err) {
             console.error(err);
-            return rejectWithValue(error?.response?.data);
+            return rejectWithValue(err?.response?.data);
         }
     },
 

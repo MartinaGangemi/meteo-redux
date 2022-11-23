@@ -31,7 +31,7 @@ function App() {
         <Layout>
             <Content className="site-layout-background">
                 <div className="container">
-                    <TopButtons />
+                    <TopButtons city={city} />
                     <Inputs city={city} setCity={setCity} />
                     {error ? (
                         <h1>city not found!</h1>
