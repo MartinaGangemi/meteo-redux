@@ -7,16 +7,6 @@ const BASE_URL = 'https://api.openweathermap.org/data/2.5';
 
 export const fetchWeather = createAsyncThunk(
     'weather/fetchWeather',
-    // async (payload, {rejectWithValue, getState, dispatch}) => {
-    //     const url = `${BASE_URL}/weather?q=${payload}&appid=${API_KEY}&units=metric`;
-    //     return await fetch(url)
-    //         .then((response) => response.json())
-    //         .then((data) => data)
-    //         .catch((err) => {
-    //             console.log('pippo');
-    //             return rejectWithValue(err?.response?.data);
-    //         });
-    // },
 
     async (payload, {rejectWithValue, getState, dispatch}) => {
         const url = `${BASE_URL}/weather?q=${payload}&appid=${API_KEY}&units=metric`;

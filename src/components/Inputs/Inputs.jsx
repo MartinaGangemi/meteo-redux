@@ -8,12 +8,12 @@ import {fetchWeather} from '../../app/weatherSlice';
 const Inputs = ({city, setCity}) => {
     const dispatch = useDispatch();
     const {handleSubmit} = useForm();
-    const [value, setValue] = useState('');
-
+    const pippo = () => {
+        dispatch(fetchWeather(city));
+        setCity('');
+    };
     return (
-        <form
-            onSubmit={handleSubmit(() => dispatch(fetchWeather(city)))}
-            className="mt-1">
+        <form onSubmit={handleSubmit(pippo)} className="mt-1">
             <Input
                 className="inputCity"
                 onChange={(e) => setCity(e.target.value)}

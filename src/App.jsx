@@ -20,6 +20,7 @@ function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        setCity('');
         dispatch(fetchWeather(city));
     }, [dispatch]);
 
