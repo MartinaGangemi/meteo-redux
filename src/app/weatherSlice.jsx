@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-//import axios from 'axios';
+
 import {DateTime} from 'luxon';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
@@ -19,45 +19,33 @@ export const fetchWeather = createAsyncThunk(
     // },
 
     async (payload, {rejectWithValue, getState, dispatch}) => {
-        const cityUrl = `${BASE_URL}/weather?q=${payload}&appid=${API_KEY}&units=metric`;
+        const url = `${BASE_URL}/weather?q=${payload}&appid=${API_KEY}&units=metric`;
 
         try {
-            const cityRes = await fetch(cityUrl);
-            const cityData = await cityRes.json();
-            //console.log(cityData);
+            const res = await fetch(url);
+            const data = await res.json();
+            //console.log(data);
 
-            const {lon, lat} = cityData.coord;
+            const {lon, lat} = data.coord;
 
             const dailyForecast = await getDailyForecast(lat, lon);
 
-            const weather = {dailyForecast, ...cityData};
+            const weather = {dailyForecast, ...data};
             return weather;
         } catch (err) {
             console.error(err);
             return rejectWithValue(err?.response?.data);
         }
     },
-
-    // async (payload, {rejectWithValue, getState, dispatch}) => {
-    //     try {
-    //         const {data} = await axios.get(
-    //             `${BASE_URL}/weather?q=${payload}&appid=${API_KEY}&units=metric`,
-    //         );
-    //         return data;
-    //     } catch (error) {
-    //         console.error('pippo');
-    //         return rejectWithValue(error?.response?.data);
-    //     }
-    // },
 );
 
 const getDailyForecast = async (lat, lon) => {
     const dailyUrl = `${BASE_URL}/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
 
-    const dailyRes = await fetch(dailyUrl);
-    const dailyData = await dailyRes.json();
+    const res = await fetch(dailyUrl);
+    const data = await res.json();
 
-    const dailyForecast = await dailyData.list
+    const dailyForecast = await data.list
         .map((d) => {
             return {
                 title: formatToLocalTime(d.dt, 'ccc'),
@@ -99,5 +87,4 @@ const weatherSlice = createSlice({
     },
 });
 
-//export const selectAllWeathers = (state) => state;
 export default weatherSlice.reducer;
